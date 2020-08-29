@@ -2,6 +2,21 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool')
 
+//get route will select all of the movies from the db
+//and send back the rows in an array
+router.get('/', (req, res) => {
+  const getMoviesQuery = `SELECT * FROM "movies";`
+  pool.query(getMoviesQuery)
+    .then(result => {
+      console.log('Got the movies!');
+      res.send(result.rows)
+    })
+    .catch(error => {
+      console.log('error trying to get movies from DB', error);
+      res.sendStatus(500);
+    })
+})
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie

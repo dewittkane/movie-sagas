@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-class CreatureItem extends Component {
+
+class Details extends Component {
     render() {
         return(
             <p>Details!</p>
@@ -13,4 +14,4 @@ const mapStateToProps = (reduxState) => {
     reduxState
   }
 }
-export default connect(mapStateToProps)(CreatureItem);
+export default connect(mapStateToProps)(Details);
