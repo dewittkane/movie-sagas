@@ -8,17 +8,16 @@ class Home extends Component {
     //on component mounting, sends request to redux to get the movie list
     componentDidMount() {
         this.props.dispatch({type: 'GET_MOVIES'});
-        this.props.dispatch({type: 'GET_GENRES'});
     }
 
     render() {
         return(
             <>
-                <p>Welcome to Blockbuster!</p>
-                <Grid container spacing={3} direction="row" justify="space-around" alignItems="center">
+                <h1>Welcome to Blockbuster!</h1>
+                <Grid container spacing={8} direction="row" justify="space-around" alignItems="center">
                     {this.props.reduxState.movies.map(movie => (
-                        <Paper>
-                        <MovieCard key={movie.id} movie={movie}/>
+                        <Paper key={movie.id}>
+                            <MovieCard  movie={movie}/>
                         </Paper>
                     ))}
                 </Grid>

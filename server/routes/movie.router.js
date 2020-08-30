@@ -19,8 +19,8 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const getDetailsQuery = `SELECT movies.*, genres.name FROM movies
-  JOIN movies_genres ON movies.id = movies_genres.movie_id
-  JOIN genres ON genres.id = movies_genres.genre_id
+  JOIN movies_genres ON movies.id = movies_genres.movies_id
+  JOIN genres ON genres.id = movies_genres.genres_id
   WHERE movies.id = $1;`
 
   pool.query(getDetailsQuery, [req.params.id])
@@ -43,7 +43,7 @@ router.post('/', (req, res) => {
   RETURNING "id";`
 
   // FIRST QUERY MAKES MOVIE
-  pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
+  pool.query(insertMovieQuery, [req.body.title, req.body.posterUrl, req.body.description])
   .then(result => {
     console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
     

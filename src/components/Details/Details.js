@@ -21,7 +21,7 @@ class Details extends Component {
                     <img alt={movie.title} src={movie.poster} />
                     <div>
                         {this.props.reduxState.details.map(genre => (
-                            <GenreCard genre={genre}/>
+                            <GenreCard key={genre.name} genre={genre}/>
                         ))}
                     </div>
                     <p>{movie.description}</p>

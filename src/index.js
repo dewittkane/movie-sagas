@@ -16,7 +16,8 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovies);
     yield takeEvery('GET_DETAILS', getDetails);
-    yield takeEvery('GET_GENRES', getGenres)
+    yield takeEvery('GET_GENRES', getGenres);
+    yield takeEvery('ADD_MOVIE', addMovie)
 }
 
 //saga to get movies from DB and pass to reducer
@@ -51,7 +52,18 @@ function* getDetails(action) {
 
         yield put({type: 'SET_DETAILS', payload: response.data})
     } catch (error){
-        console.log('error in get detailss request', error)
+        console.log('error in get details request', error)
+    }
+}
+
+function* addMovie(action) {
+    try{
+        let response = yield axios.post(`/api/movie/`, action.payload)
+        console.log(response.data);
+
+        yield put({type: 'GET_MOVIES'})
+    } catch (error){
+        console.log('error in add movie request', error)
     }
 }
 

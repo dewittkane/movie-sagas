@@ -18,11 +18,11 @@ CREATE TABLE "genres" (
 -- Recall that this Junction Table will just be a table of ids!
 CREATE TABLE "movies_genres" (
 "id" SERIAL PRIMARY KEY,
-"movie_id" INT REFERENCES "movies",
-"genre_id" INT REFERENCES "genres"
+"movies_id" INT REFERENCES "movies",
+"genres_id" INT REFERENCES "genres"
 );
 
-INSERT INTO "movies_genres" ("movie_id", "genre_id")
+INSERT INTO "movies_genres" ("movies_id", "genres_id")
 VALUES
 (1, 1), (1, 5), (1, 7), (1,11), (2,2),(2,8),(2,10),(3,7),(3,13),(4,2),(4,4),(4,1),(5,6),(5,3),(6,1),(6,8),(6,7),(7,7),(7,10),(8,1),(8,7),(9,2),(9,4),(10,1),(10,7),(10,12),(11,1),(11,12),(11,6),(12,3),(12,6),(13,6),(13,10),(14,2),(14,4);
 
