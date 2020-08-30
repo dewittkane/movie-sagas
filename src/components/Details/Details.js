@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from '@material-ui/core';
+import GenreCard from '../GenreCard/GenreCard'
 
 class Details extends Component {
 
@@ -18,7 +19,13 @@ class Details extends Component {
             <Card>
                 <h3>{movie.title}</h3>
                 <img alt={movie.title} src={movie.poster} />
+                <div>
+                {this.props.reduxState.details.map(genre => (
+                    <GenreCard genre={genre}/>
+                ))}
+                </div>
                 <p>{movie.description}</p>
+
             </Card>
             }
             </>
