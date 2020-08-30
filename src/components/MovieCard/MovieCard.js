@@ -10,6 +10,8 @@ class MovieCard extends Component {
                 <Card>
                     {/* when clicking image, you will be directed to details page of that movie */}
                     <Link to={`/details/${this.props.movie.id}`}>
+                        {/* fixing image height means the grid won't get messed up,
+                         all though it might warp images if they're wrong dimensions... */}
                         <img height='274px' width='185px' alt={this.props.movie.title} src={this.props.movie.poster}/>
                     </Link>
                 </Card>

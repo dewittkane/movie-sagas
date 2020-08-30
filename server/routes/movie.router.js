@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//sends a get request for one moving by sending id param in the router
 router.get('/:id', (req, res) => {
   const getDetailsQuery = `SELECT movies.*, genres.name FROM movies
   JOIN movies_genres ON movies.id = movies_genres.movies_id
@@ -33,6 +34,7 @@ router.get('/:id', (req, res) => {
       res.sendStatus(500);
     })
 });
+
 
 router.post('/', (req, res) => {
   console.log(req.body);

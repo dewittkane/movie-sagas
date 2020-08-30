@@ -56,6 +56,7 @@ function* getDetails(action) {
     }
 }
 
+//saga to post a movie to the DB and the dispatchs a new get request
 function* addMovie(action) {
     try{
         let response = yield axios.post(`/api/movie/`, action.payload)
@@ -87,12 +88,12 @@ const genres = (state = [], action) => {
     }
 }
 
-// Used to store the selected movies details
-//this feels like a lot of work, but i guess it works?
+// reducer to store the selected movies details
 const details = (state = [], action) => {
     switch (action.type) {
         case 'SET_DETAILS':
             return action.payload;
+            //thought about splitting up the array here, but decided it was best to keep it simple
             // let movie = action.payload[0];
             // let detailGenres = [];
             // for (const movieWithGenre of action.payload) {
@@ -123,4 +124,5 @@ sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
     document.getElementById('root'));
+    
 registerServiceWorker();

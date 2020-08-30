@@ -13,6 +13,7 @@ class Home extends Component {
     render() {
         return(
             <>
+                {/* RIP */}
                 <h1>Welcome to Blockbuster!</h1>
                 <Grid container spacing={8} direction="row" justify="space-around" alignItems="center">
                     {this.props.reduxState.movies.map(movie => (

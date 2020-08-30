@@ -30,13 +30,7 @@ class AddMovie extends Component {
         //checks that all fields are filled out
         if (this.state.title && this.state.posterUrl && this.state.description && this.state.genre_id) {
             this.props.dispatch({type: 'ADD_MOVIE', payload: this.state})
-            //resets inputs once dispatch is finished
-            this.setState({
-                title: '',
-                posterUrl: '',
-                description: '',
-                genre_id: ''
-            })
+            this.props.history.goBack()
         } else {
             alert("Please fill out all fields.")
         }
@@ -49,16 +43,38 @@ class AddMovie extends Component {
                 <Card>
                     <h1>Add a movie!</h1>
                     <div>
-                        <TextField fullWidth value={this.state.title} onChange={this.handleChangeFor('title')} type="text" helperText="Title"/>
+                        <TextField 
+                            fullWidth 
+                            value={this.state.title} 
+                            onChange={this.handleChangeFor('title')} 
+                            type="text" 
+                            helperText="Title"
+                        />
                     </div>
                     <div>
-                        <TextField multiline rowsMax={4} fullWidth value={this.state.posterUrl} onChange={this.handleChangeFor('posterUrl')} type="text" helperText="Image Url"/>
+                        <TextField 
+                            multiline 
+                            rowsMax={4} 
+                            fullWidth 
+                            value={this.state.posterUrl} 
+                            onChange={this.handleChangeFor('posterUrl')} 
+                            type="text" 
+                            helperText="Image Url"
+                        />
                     </div>
                     <div>
-                        <TextField multiline rowsMax={4} fullWidth value={this.state.description} onChange={this.handleChangeFor('description')} type="text" helperText="Description"/>
+                        <TextField 
+                            multiline 
+                            rowsMax={4} 
+                            fullWidth 
+                            value={this.state.description} 
+                            onChange={this.handleChangeFor('description')} 
+                            type="text" 
+                            helperText="Description"
+                        />
                     </div>
                     <div>
-                        {/* select element that uses the genres from the DB */}
+                        {/* a select element that uses the genres from the DB */}
                         <TextField 
                             select
                             label="Genre" 
@@ -73,8 +89,17 @@ class AddMovie extends Component {
                             ))}
                         </TextField>
                     </div>
-                    <Button onClick={this.handleSubmit} variant="contained" color="primary">Submit</Button>
-                    <Button onClick={this.props.history.goBack} variant="contained">Back to List</Button>
+                    <Button 
+                        onClick={this.handleSubmit} 
+                        variant="contained" 
+                        color="primary">
+                            Submit
+                    </Button>
+                    <Button 
+                        onClick={this.props.history.goBack} 
+                        variant="contained">
+                            Cancel
+                    </Button>
                 </Card>
             </>
 
