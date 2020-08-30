@@ -20,6 +20,10 @@ Now that the server is running, open a new terminal tab with `cmd + t` and start
 npm run client
 ```
 
+## Usage
+
+Using this app is very intuitive, but after loading the main page you can navigate to any of the movies details by clicking on the movie poster.  There is also a button at the bottom of the page that will take you to a form to add new movies to the database.  From the details page, there's a handy back button to go back to the movie list.
+
 ## Screen Shots
 
 ![Feedback Screenshot One](readme-images/imageOne.png)
