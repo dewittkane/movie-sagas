@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button, Card } from '@material-ui/core';
 
 class AddMovie extends Component {
     render() {
+
+        handleSubmit = () => {
+            this.props.dispatch({type: 'ADD_MOVIE', })
+        }
         return(
-            <p>Add movie!</p>
+            <>
+                <Card>
+
+                    <p>Add movie!</p>
+                    <Button onClick={this.handleSubmit} variant="contained">Back to List</Button>
+                    <Button onClick={this.props.history.goBack} variant="contained">Back to List</Button>
+                </Card>
+            </>
+
         );
     };
 };

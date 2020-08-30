@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../MovieCard/MovieCard.js'
+import { Button, Paper, Grid } from '@material-ui/core'
 
 class Home extends Component {
 
@@ -13,9 +14,14 @@ class Home extends Component {
         return(
             <>
                 <p>Welcome to Blockbuster!</p>
-                {this.props.reduxState.movies.map(movie => (
-                    <MovieCard key={movie.id} movie={movie}/>
-                ))}
+                <Grid container spacing={3} direction="row" justify="space-around" alignItems="center">
+                    {this.props.reduxState.movies.map(movie => (
+                        <Paper>
+                        <MovieCard key={movie.id} movie={movie}/>
+                        </Paper>
+                    ))}
+                </Grid>
+                <Button variant="contained" color="primary" onClick={() => this.props.history.push('/addmovie')}>Add Movie</Button>
             </>
         );
     };

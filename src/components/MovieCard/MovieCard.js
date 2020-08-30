@@ -11,7 +11,7 @@ class MovieCard extends Component {
     render() {
         return(
                 <Card onClick={this.handleClick}>
-                    <h4>{this.props.movie.title}</h4>
+                    {/* <h4>{this.props.movie.title}</h4> */}
                     {/* when clicking image, you will be directed to details page of that movie */}
                     <Link to={`/details/${this.props.movie.id}`}>
                         <img alt={this.props.movie.title} src={this.props.movie.poster}/>
