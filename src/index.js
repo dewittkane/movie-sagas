@@ -31,14 +31,15 @@ function* getMovies() {
     }
 }
 
+//saga to get genres from DB and pass to reducer
 function* getGenres() {
     try{
         let response = yield axios.get('/api/genre/')
         console.log(response.data);
 
-        yield put({type: 'SET_MOVIES', payload: response.data})
+        yield put({type: 'SET_GENRES', payload: response.data})
     } catch (error){
-        console.log('error in get movies request', error)
+        console.log('error in get genres request', error)
     }
 }
 
