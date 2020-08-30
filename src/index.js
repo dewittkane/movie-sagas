@@ -14,7 +14,8 @@ import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
-    yield takeEvery('GET_MOVIES', getMovies)
+    yield takeEvery('GET_MOVIES', getMovies);
+    yield takeEvery('GET_DETAILS', getDetails)
 }
 
 //saga to get movies from DB and pass to reducer
@@ -26,6 +27,18 @@ function* getMovies() {
         yield put({type: 'SET_MOVIES', payload: response.data})
     } catch (error){
         console.log('error in get movies request', error)
+    }
+}
+
+//saga to get movie details from DB based on router param id and pass to reducer
+function* getDetails(action) {
+    try{
+        let response = yield axios.get(`/api/movie/${action.payload}`)
+        console.log(response.data);
+
+        yield put({type: 'SET_DETAILS', payload: response.data})
+    } catch (error){
+        console.log('error in get detailss request', error)
     }
 }
 
@@ -49,6 +62,23 @@ const genres = (state = [], action) => {
     }
 }
 
+// Used to store the selected movies details
+//this feels like a lot of work, but i guess it works?
+const details = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_DETAILS':
+            return action.payload;
+            // let movie = action.payload[0];
+            // let detailGenres = [];
+            // for (const movieWithGenre of action.payload) {
+            //     detailGenres.push(movieWithGenre.name)
+            // };
+            // return {movie: movie, genres: detailGenres};
+        default:
+            return state;
+    }
+}
+
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
 
@@ -56,7 +86,8 @@ const sagaMiddleware = createSagaMiddleware();
 const storeInstance = createStore(
     combineReducers({
         movies,
-        genres
+        genres,
+        details
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

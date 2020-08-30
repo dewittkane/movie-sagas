@@ -14,7 +14,7 @@ class App extends Component {
         <Router>
           {/* sets up routes for different views */}
           <Route exact path="/" component={Home} />
-          <Route path="/details" component={Details} />
+          <Route path="/details/:movieId" component={Details} /> 
           <Route path="/addmovie" component={AddMovie} />
         </Router>
       </div>
