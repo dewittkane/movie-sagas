@@ -7,7 +7,8 @@ class Home extends Component {
 
     //on component mounting, sends request to redux to get the movie list
     componentDidMount() {
-        this.props.dispatch({type: 'GET_MOVIES'})
+        this.props.dispatch({type: 'GET_MOVIES'});
+        this.props.dispatch({type: 'GET_GENRES'});
     }
 
     render() {

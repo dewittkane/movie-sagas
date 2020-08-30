@@ -7,6 +7,7 @@ import AddMovie from '../AddMovie/AddMovie.js'
 
 class App extends Component {
   // Renders the entire app on the DOM
+
   render() {
     return (
       <div className="App">

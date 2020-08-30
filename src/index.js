@@ -15,13 +15,25 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('GET_MOVIES', getMovies);
-    yield takeEvery('GET_DETAILS', getDetails)
+    yield takeEvery('GET_DETAILS', getDetails);
+    yield takeEvery('GET_GENRES', getGenres)
 }
 
 //saga to get movies from DB and pass to reducer
 function* getMovies() {
     try{
         let response = yield axios.get('/api/movie/')
+        console.log(response.data);
+
+        yield put({type: 'SET_MOVIES', payload: response.data})
+    } catch (error){
+        console.log('error in get movies request', error)
+    }
+}
+
+function* getGenres() {
+    try{
+        let response = yield axios.get('/api/genre/')
         console.log(response.data);
 
         yield put({type: 'SET_MOVIES', payload: response.data})
